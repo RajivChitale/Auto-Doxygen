@@ -5,8 +5,9 @@ jobs:
   document-action:
     runs-on: ubuntu-latest
     steps:
-      - name: Install and Run Doxygen
+      - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Install and Run Doxygen
         run: |
           sudo apt-get update
           sudo apt-get install -y doxygen
