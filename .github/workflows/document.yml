@@ -1,0 +1,9 @@
+name: Automated Documentation
+run-name: updating documentation after changes by ${{ github.actor }}
+on: [push]
+jobs:
+  document-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: doxygen
