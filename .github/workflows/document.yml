@@ -5,12 +5,9 @@ jobs:
   document-action:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Doxygen
+      - name: Install and Run Doxygen
+        uses: actions/checkout@v4
         run: |
           sudo apt-get update
           sudo apt-get install -y doxygen
-
-      - name: Run Doxygen
-      - run: doxygen
+          doxygen
