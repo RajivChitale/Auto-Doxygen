@@ -12,3 +12,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y doxygen
           doxygen
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: RajivChitale
+          author_email: rajivchitale@gmail.com
+          message: 'Updated Documentation [skip actions]'
+          add: 'html/*'
