@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sub_0',['sub',['../de/dde/classcomplex_1_1Complex.html#ac98961a87f0549bfb9770b07c1fa06b0',1,'complex::Complex']]]
+  ['matrix_0',['Matrix',['../d3/d3f/classMatrix.html#a07a3cee5bc286ca27ceffe81ce5a2d01',1,'Matrix']]]
 ];
