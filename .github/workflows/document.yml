@@ -1,22 +1,64 @@
-name: Automated Documentation
-run-name: updating documentation after changes by ${{ github.actor }}
-on: [push]
+# This is a basic workflow to help you get started with Actions
+
+name: Doxygen Action
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  document-action:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      - name: Install and Run Doxygen
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen
-          doxygen
-      - name: Archive documentation
-        uses: actions/upload-artifact@v3
-        with:
-          name: doxygen-html
-          path: html/*
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+        
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.1.0
+      with:
+        # Path to Doxyfile
+        doxyfile-path: "./Doxyfile" # default is ./Doxyfile
+        # Working directory
+        working-directory: "." # default is .
+    
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # Default Doxyfile build documentation to html directory. 
+        # Change the directory if changes in Doxyfile
+        publish_dir: ./html
+
+
+# name: Automated Documentation
+# run-name: updating documentation after changes by ${{ github.actor }}
+# on: [push]
+# jobs:
+#   document-action:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v4
+#       - name: Install and Run Doxygen
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install -y doxygen
+#           doxygen
+#       - name: Archive documentation
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: doxygen-html
+#           path: html/*
+
       # - name: Commit changes
       #   uses: EndBug/add-and-commit@v9
       #   with:
