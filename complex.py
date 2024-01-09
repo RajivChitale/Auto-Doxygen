@@ -5,6 +5,7 @@
 class Complex:
     ## Creates a complex number.
     # two arguments are used as real and imaginary parts
+    # @param real Real part
     def __init__(self, real, imag):
         self.real = real
         self.imag = imag
